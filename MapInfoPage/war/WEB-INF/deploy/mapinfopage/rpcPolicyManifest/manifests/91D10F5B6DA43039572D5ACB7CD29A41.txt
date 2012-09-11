@@ -1,0 +1,2 @@
+serviceClass: com.mapinfopage.client.rpc.MessageService
+path: 463EAAF7EDC48B3FE178F064D1C78957.gwt.rpc

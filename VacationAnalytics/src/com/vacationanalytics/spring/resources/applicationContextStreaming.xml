@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id="streamTweets" class="com.vacationanalytics.stream.tweets.StreamTweets">
+	<property name="messageCreator"><ref bean="messageCreator"/></property>
+</bean>
+
+<bean id="messageCreator" class="com.vacationanalytics.messaging.MessageCreatorImpl"/>
+
+<!--
+<bean id="tweetAnalyzer" class="com.travel.core.TweetAnalyzer">
+	<property name="locationDAO"><ref bean="locationDAOImpl"/></property>
+</bean>
+
+<bean id="geoCodeAPI" class="com.travel.service.CloudMadeGeoCodeAPIImpl">
+	<property name="locationDAO"><ref bean="locationDAOImpl"/></property>
+</bean>
+
+<bean id="locationDAOImpl" class="com.travel.dao.LocationDAOImpl" init-method="init" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+
+</bean>
+
+<bean id="dbTweetTraining" class="com.travel.classification.training.DBBasedTweetTraining">
+	<property name="classifierDAO"><ref bean="classifierDAOImpl"/></property>
+	<property name="locationDAO"><ref bean="locationDAOImpl"/></property>
+</bean>
+
+
+
+<bean id="classifierDAOImpl" class="com.travel.dao.ClassifierDAOImpl" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+
+</bean>
+
+    
+    <bean id="locationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/"/>
+        <property name="username" value="vacation"/>
+        <property name="password" value="vacation"/>
+    </bean>
+
+-->
+
+</beans>

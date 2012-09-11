@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui" >
+
+
+<ui:style>
+
+	.infoTableHeader {
+		font-weight: bold;
+		font-size: 125%;
+		text-align: center;
+	}
+	
+	.cellContainer {
+		text-align: center;
+	}
+	
+	.tweetImage {
+    	position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    	background-color: #424242; 
+    /* height, width, etc. */
+	}
+
+</ui:style>
+
+<g:DockLayoutPanel unit="PX" >
+
+	<g:north size="40" >
+		
+    	<g:HTMLPanel>
+			<g:Image ui:field="image" />
+			
+			 
+		</g:HTMLPanel>
+	</g:north>
+	
+	<g:center>
+		<g:LayoutPanel ui:field="cellContainer"
+		               addStyleNames="{style.cellContainer}" >
+		</g:LayoutPanel>
+	</g:center>
+
+</g:DockLayoutPanel>
+
+
+</ui:UiBinder> 

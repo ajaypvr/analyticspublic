@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id="naiveBayeTraining" class="com.vacationanalytics.classification.train.NaiveBayeTraining">
+	<property name="tweetClassificationDAO"><ref bean="tweetClassificationDAO"/></property>
+</bean>
+
+<bean id="naiveBayeClassifier" class="com.vacationanalytics.classification.classify.NaiveBayeClassifier">
+	<property name="tweetClassificationDAO"><ref bean="tweetClassificationDAO"/></property>
+</bean>
+
+
+<bean id="tweetClassificationDAO" class="com.vacationanalytics.classification.dao.TweetClassificationDAOImpl" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+	<property name="schema"><value>locationdatabase</value></property>
+
+</bean>
+
+<bean id="tweetSearchDAO" class="com.vacationanalytics.search.dao.TweetSearchDAOImpl" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+	<property name="schema"><value>locationdatabase</value></property>
+
+</bean>
+
+    
+    <bean id="locationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://location.cde0ik8lxb3b.us-east-1.rds.amazonaws.com:3306/"/>
+        <property name="username" value="ajaymangalam"/>
+        <property name="password" value="ajaypvr"/>
+    </bean>
+
+</beans>

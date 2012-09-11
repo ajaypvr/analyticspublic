@@ -1,0 +1,55 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:mipw="urn:import:com.mapinfopage.client.widget" >
+
+
+<ui:style>
+
+	.southPanel {
+		padding: 1em;
+	}
+
+</ui:style>
+
+<g:DockLayoutPanel unit="PX" >
+
+
+	<g:east size='327'>
+		<g:LayoutPanel ui:field="infoTableContainer" >
+		    <g:layer>
+				<mipw:InfoTableWidget ui:field="infoTable" >
+				</mipw:InfoTableWidget>
+			</g:layer>
+		</g:LayoutPanel>
+	</g:east>
+
+	<g:south size='100'>
+		<g:HTMLPanel addStyleNames="{style.southPanel}" >
+			<mipw:TimePeriodSliderWidget ui:field="timePeriodSlider" >
+			</mipw:TimePeriodSliderWidget>
+		</g:HTMLPanel>
+	</g:south>
+	
+	<g:center>
+		<g:LayoutPanel ui:field="mapContainer" >
+			<g:layer>
+				<g:HTMLPanel>
+					<mipw:GoogleMapWidget ui:field="map">
+					</mipw:GoogleMapWidget>
+				</g:HTMLPanel>
+			</g:layer>
+			<!-- 
+			<g:layer left="350px" top="100px" width="390px" height="209px" >
+				<mipw:CategoryListWidget />
+			</g:layer>
+			 -->
+		</g:LayoutPanel>
+	</g:center>
+
+
+</g:DockLayoutPanel>
+
+
+</ui:UiBinder> 

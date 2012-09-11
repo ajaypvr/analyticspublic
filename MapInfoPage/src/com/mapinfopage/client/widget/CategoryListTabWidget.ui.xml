@@ -1,0 +1,50 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui" >
+
+
+<ui:style>
+
+	.tabImageContainer {
+		display: inline;
+		float: left;
+		height: 50px;
+	}
+	
+	.tabImage {
+		width: 50px;
+		height: 50px;
+	}
+
+	.tabTextContainer {
+		display: inline;
+		float: left;
+		overflow: hidden;
+		height: 50px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	
+	.tabText {
+		padding-top: 25px;
+	}
+
+</ui:style>
+
+
+<g:HTMLPanel>
+
+	<g:FlowPanel addStyleNames="{style.tabImageContainer}">
+		<g:Image ui:field="tabImage"
+		         addStyleNames="{style.tabImage}" />
+	</g:FlowPanel>
+
+	<g:FlowPanel addStyleNames="{style.tabTextContainer}">
+		<g:Label ui:field="tabText"
+		         addStyleNames="{style.tabText}" />
+	</g:FlowPanel>
+
+</g:HTMLPanel>
+
+</ui:UiBinder>

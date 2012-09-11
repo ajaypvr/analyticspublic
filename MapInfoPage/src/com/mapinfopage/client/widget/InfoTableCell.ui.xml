@@ -1,0 +1,104 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui" >
+
+
+<ui:style>
+	
+	.cellContainer {
+		text-align: left;
+	}
+	
+	.leftCell {
+		display: inline;
+		float: left;
+		width: 45px;
+		height: 114px;
+		border-bottom: 1px solid #EBEBEB;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: #EBEBEB;
+	}
+	
+	.imageContainer {
+		display: inline;
+		width: 45px;
+		height: 114px;
+		overflow: hidden;
+	}
+	
+	.image {
+		padding-top: 27px;
+		width: 45px;
+		height: 50px;
+	}
+
+	.rightCell {
+		display: inline;
+		float: left;
+		width: 280px;
+		border-bottom: 1px solid #EBEBEB;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: #EBEBEB;
+	}
+
+	.nameContainer {
+		color: #333;
+		font-weight: bold;
+		height: 25px;
+		overflow: hidden;
+		font: bold, 13px/1.5 Helvetica Neue,Arial,Helvetica,'Liberation Sans',FreeSans,sans-serif
+	}
+
+	.textContainer {
+		height: 64px;
+		overflow: hidden;
+		font-family: 16x, Arial,"Helvetica Neue",sans-serif
+	}
+
+	.dateTimeContainer {
+		
+		height: 25px;
+		overflow: hidden;
+		color: #999!important;
+		font-size: 11px;
+		
+	}
+
+</ui:style>
+
+
+<g:HTMLPanel addStyleNames="{style.cellContainer}" >
+
+	<g:FlowPanel addStyleNames="{style.leftCell}" >
+
+		<g:FlowPanel addStyleNames="{style.imageContainer}" >	
+			<g:Image ui:field="imageField"
+			         addStyleNames="{style.image}" >
+			</g:Image>
+		</g:FlowPanel>
+
+	</g:FlowPanel>
+
+	<g:FlowPanel addStyleNames="{style.rightCell}" >
+
+		<g:FlowPanel addStyleNames="{style.nameContainer}" >
+			<g:Label ui:field="nameField">name</g:Label>
+		</g:FlowPanel>
+	
+		<g:FlowPanel addStyleNames="{style.textContainer}" >
+			<g:Label ui:field="textField">text</g:Label>	
+		</g:FlowPanel>
+	
+		<g:FlowPanel addStyleNames="{style.dateTimeContainer}" >
+			<g:Label ui:field="dateTimeField">date/time</g:Label>	
+		</g:FlowPanel>
+	
+	</g:FlowPanel>
+
+</g:HTMLPanel>
+
+
+</ui:UiBinder> 

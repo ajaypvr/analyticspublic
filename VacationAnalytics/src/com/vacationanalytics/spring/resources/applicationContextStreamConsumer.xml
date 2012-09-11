@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+<bean id="messageConsumer" class="com.vacationanalytics.messaging.MessageConsumerImpl">
+	<property name="streamProcessor"><ref bean="streamProcessor"/></property>
+</bean>
+
+<bean id="streamProcessor" class="com.vacationanalytics.processor.StreamProcessor">
+	<property name="destinationMatcher"><ref bean="destinationMatcher"/></property>
+	<property name="tweetSearchDAO"><ref bean="tweetSearchDAOImpl"/></property>
+	<property name="tweetClassifier"><ref bean="naiveBayeClassifier"/></property>
+</bean>
+
+
+
+
+<bean id="destinationMatcher" class="com.vacationanalytics.search.DestinationMatcher">
+	<property name="searchLocation"><ref bean="searchLocation"/></property>
+	
+</bean>
+
+<bean id="naiveBayeClassifier" class="com.vacationanalytics.classification.classify.NaiveBayeClassifier" init-method="setUpNaiveBayeClassifier">
+	<property name="tweetClassificationDAO"><ref bean="tweetClassificationDAO"/></property>
+</bean>
+
+<bean id="searchLocation" class="com.vacationanalytics.search.SearchLocation" init-method="init"/>
+
+<bean id="tweetClassificationDAO" class="com.vacationanalytics.classification.dao.TweetClassificationDAOImpl" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+	<property name="schema"><value>locationdatabase</value></property>
+
+</bean>
+
+<bean id="tweetSearchDAOImpl" class="com.vacationanalytics.search.dao.TweetSearchDAOImpl" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+	<property name="schema"><value>locationdatabase</value></property>
+
+</bean>
+
+    
+    <bean id="locationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://location.cde0ik8lxb3b.us-east-1.rds.amazonaws.com:3306/"/>
+        <property name="username" value="ajaymangalam"/>
+        <property name="password" value="ajaypvr"/>
+    </bean>
+
+
+
+<!--
+<bean id="tweetAnalyzer" class="com.travel.core.TweetAnalyzer">
+	<property name="locationDAO"><ref bean="locationDAOImpl"/></property>
+</bean>
+
+<bean id="geoCodeAPI" class="com.travel.service.CloudMadeGeoCodeAPIImpl">
+	<property name="locationDAO"><ref bean="locationDAOImpl"/></property>
+</bean>
+
+<bean id="locationDAOImpl" class="com.travel.dao.LocationDAOImpl" init-method="init" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+
+</bean>
+
+<bean id="dbTweetTraining" class="com.travel.classification.training.DBBasedTweetTraining">
+	<property name="classifierDAO"><ref bean="classifierDAOImpl"/></property>
+	<property name="locationDAO"><ref bean="locationDAOImpl"/></property>
+</bean>
+
+
+
+<bean id="classifierDAOImpl" class="com.travel.dao.ClassifierDAOImpl" >
+	<property name="dataSource"><ref bean="locationDataSource"/></property>
+
+</bean>
+
+    
+    <bean id="locationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/"/>
+        <property name="username" value="vacation"/>
+        <property name="password" value="vacation"/>
+    </bean>
+
+-->
+
+</beans>
