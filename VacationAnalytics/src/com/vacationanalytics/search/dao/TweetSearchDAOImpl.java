@@ -15,6 +15,12 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 
 import com.vacationanalytics.tweets.TweetStatus;
 
+/**
+ * DAO for tweets
+ * 
+ * @author ajaymangalam
+ *
+ */
 public class TweetSearchDAOImpl implements TweetSearchDAO{
 	
 	private String schema;
@@ -26,7 +32,10 @@ public class TweetSearchDAOImpl implements TweetSearchDAO{
 	private static final String TWEET_DEST_VALID = "TWEET_DEST_VALID".toLowerCase();
 	private static final String VACATION_DESTINATION = "VACATION_DESTINATION".toLowerCase();
 	
-
+	/**
+	 * Insert the tweets for which the location has been identified but not yet classified
+	 * @param tweetStatus
+	 */
 	public void insertTweetDestinationIdentifiedNotClassified(TweetStatus tweetStatus) {
 		final String query = "insert into " + schema + "." + TWEET_DEST_IDN_NO_CLASSIFY + " (TWEET_ID, TWEET_TEXT, DESTINATION_LOCATION)"
 						+ " VALUES (?, ?, ?) ";
@@ -52,6 +61,10 @@ public class TweetSearchDAOImpl implements TweetSearchDAO{
 		
 	}
 	
+	/**
+	 * Get the tweets for which the location has been identified but not yet classified
+	 * @return
+	 */
 	public List<TweetStatus> getTweetDestinationIdentifiedNotClassified() {
 		List<TweetStatus> tweetStatuList = new ArrayList<TweetStatus>();
 		
@@ -75,7 +88,10 @@ public class TweetSearchDAOImpl implements TweetSearchDAO{
 	}
 	
 	
-	
+	/**
+	 * Get the list of locations
+	 * @return
+	 */
 	public List<String> getDestinationLocation() {
 		List<String> destinationLocation = new ArrayList<String>();
 		
@@ -100,6 +116,10 @@ public class TweetSearchDAOImpl implements TweetSearchDAO{
 		this.schema = schema;
 	}
 
+	/**
+	 * Insert all the valid destination tweets
+	 * @param tweetStatus
+	 */
 	public void insertTweetDestinationInValid(TweetStatus tweetStatus) {
 		final String query = "insert into " + schema + "." + TWEET_DEST_IN_VALID + " ("
 								+ " TWEET_ID, USER_ID, TWEET_TEXT, USER_LOCATION, USER_NAME, TIME_CREATED, VACATION_DESTINATION, PROFILE_IMAGE_URL)"
@@ -134,6 +154,10 @@ public class TweetSearchDAOImpl implements TweetSearchDAO{
 		
 	}
 
+	/**
+	 * Insert all the Invalid destination tweets
+	 * @param tweetStatus
+	 */
 	public void insertTweetDestinationValid(TweetStatus tweetStatus) {
 		final String query = "insert into " + schema + "." + TWEET_DEST_VALID + "("
 		+ " TWEET_ID, USER_ID, TWEET_TEXT, USER_LOCATION, USER_NAME, TIME_CREATED, VACATION_DESTINATION, PROFILE_IMAGE_URL)"

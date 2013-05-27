@@ -3,6 +3,7 @@ package com.vacationanalytics.search;
 
 import java.io.Reader;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,11 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.util.Version;
 
+/**
+ * Analyzer that is used by Lucene for filtering words
+ * @author ajaymangalam
+ *
+ */
 public class CustomAnalyzer extends StandardAnalyzer{
 	
 	private static final String[] ADDITIONAL_STOP_WORDS = {
@@ -20,11 +26,11 @@ public class CustomAnalyzer extends StandardAnalyzer{
 	      ":", "'"
 	  };
 	  
-	  private static Set MERGED_STOP_WORDS;
+	  private static Set<String> MERGED_STOP_WORDS;
 	  
 	  static {
-		  MERGED_STOP_WORDS = new HashSet(); 
-		  MERGED_STOP_WORDS.addAll(StandardAnalyzer.STOP_WORDS_SET);
+		  MERGED_STOP_WORDS = new HashSet<String>(); 
+		  MERGED_STOP_WORDS.addAll((Collection<? extends String>) StandardAnalyzer.STOP_WORDS_SET);
 		  MERGED_STOP_WORDS.addAll(Arrays.asList(ADDITIONAL_STOP_WORDS));
 	  }
 	  

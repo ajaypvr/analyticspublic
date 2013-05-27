@@ -2,6 +2,12 @@ package com.vacationanalytics.classification.train;
 
 import com.vacationanalytics.classification.TweetCategory.TweetCategoryType;
 
+/**
+ * Tweet training object. Used by NaiveBayeTraining for the training process.
+ * 
+ * @author ajaymangalam
+ *
+ */
 public class TweetTrainingInstance {
 	
 	private long tweetId;
@@ -26,8 +32,5 @@ public class TweetTrainingInstance {
 	public void setTweetId(long tweetId) {
 		this.tweetId = tweetId;
 	}
-	
-	
-	
 
 }

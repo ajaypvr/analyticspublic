@@ -5,20 +5,13 @@ package com.vacationanalytics.search;
  * @author ajaymangalam
  *
  */
-public class DestinationMatcher {
+public interface DestinationMatcher {
 	
-	SearchLocation searchLocation;
-	
-	public String matchDestination(String tweetText){
-		
-		return searchLocation.searchLocation(tweetText);
-		
-	}
-
-	public void setSearchLocation(SearchLocation searchLocation) {
-		this.searchLocation = searchLocation;
-	}
-	
-	
+	/**
+	 * For the given tweet it find if the location name exist within the tweet text.
+	 * @param tweetText
+	 * @return
+	 */
+	public String matchDestination(String tweetText);
 
 }

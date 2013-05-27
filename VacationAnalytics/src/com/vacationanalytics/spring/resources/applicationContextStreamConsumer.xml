@@ -13,7 +13,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 </bean>
 
 <bean id="streamProcessor" class="com.vacationanalytics.processor.StreamProcessor">
-	<property name="destinationMatcher"><ref bean="destinationMatcher"/></property>
+	<property name="destinationMatcher"><ref bean="destinationMatcherImpl"/></property>
 	<property name="tweetSearchDAO"><ref bean="tweetSearchDAOImpl"/></property>
 	<property name="tweetClassifier"><ref bean="naiveBayeClassifier"/></property>
 </bean>
@@ -21,7 +21,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 
 
 
-<bean id="destinationMatcher" class="com.vacationanalytics.search.DestinationMatcher">
+<bean id="destinationMatcherImpl" class="com.vacationanalytics.search.DestinationMatcherImpl">
 	<property name="searchLocation"><ref bean="searchLocation"/></property>
 	
 </bean>

@@ -5,10 +5,13 @@ import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 
 import com.vacationanalytics.classification.TweetCategory.TweetCategoryType;
 import com.vacationanalytics.classification.classify.NaiveBayeClassifier;
+import com.vacationanalytics.messaging.MessageCreatorImpl;
 import com.vacationanalytics.search.DestinationMatcher;
 import com.vacationanalytics.search.dao.TweetSearchDAO;
 import com.vacationanalytics.tweets.TweetStatus;
@@ -20,6 +23,8 @@ import com.vacationanalytics.tweets.TweetStatus;
  *
  */
 public class StreamProcessor {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(StreamProcessor.class);
 	
 	private DestinationMatcher destinationMatcher;
 	private NaiveBayeClassifier tweetClassifier;
@@ -34,7 +39,7 @@ public class StreamProcessor {
 	 * 
 	 * @param message
 	 */
-	public void processStream(TweetStatus message){
+	public TweetCategoryType processStream(TweetStatus message){
 		//Get the tweet text
 		String tweetText = message.getTweetText();
 		
@@ -53,18 +58,22 @@ public class StreamProcessor {
 			
 			//classify the tweet
 			TweetCategoryType tweetCategory = tweetClassifier.classify(message);
-			System.out.println("Category: " + tweetCategory);
+			LOG.info("Category: " + tweetCategory);
 			
 			try{
 				if(TweetCategoryType.NOTSPAM.equals(tweetCategory)){
 					tweetSearchDAO.insertTweetDestinationValid(message);
+					return TweetCategoryType.NOTSPAM;
 				}else{
 					tweetSearchDAO.insertTweetDestinationInValid(message);
+					return TweetCategoryType.SPAM;
 				}
 			}catch(DuplicateKeyException dke){
-				System.out.println("DuplicateKeyException");
+				LOG.error("DuplicateKeyException", dke);
 			}
 		}
+		
+		return null;
 		
 		
 	}
@@ -81,8 +90,7 @@ public class StreamProcessor {
 		  try {
 			cleanString(tweetText, buffer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.error("matchDestination", e);
 		}
 		
 		return destinationMatcher.matchDestination(buffer.toString().trim());

@@ -46,10 +46,10 @@ public class StreamTweets implements StatusListener{
 		config.setUser("ajaymangalam");
 		config.setPassword("ajaypvr");
 		config.setDebugEnabled(true);
-		config.setOAuthAccessToken("37819011-kWoh0J3QxrMwJCjriISzzAkmSYlWk3DlZYWluX14");
-		config.setOAuthAccessTokenSecret("pBLPRk2cx7kfijK483a1qUoRV65CxremjNaN4kGNkw");
-		config.setOAuthConsumerKey("PHJbIbZtysOmPr4ByW0Ew");
-		config.setOAuthConsumerSecret("DLFG6UHrTN82HzhlpuKyZEvOfVQUTqjPb6Yg25IZdw");
+		config.setOAuthAccessToken("vacation.oauthaccesstoken");
+		config.setOAuthAccessTokenSecret("vacation.oauthaccesstokensecret");
+		config.setOAuthConsumerKey("vacation.oauthconsumerkey");
+		config.setOAuthConsumerSecret("vacation.oauthconsumersecret");
 		
 		TwitterStream twitterStream = new TwitterStreamFactory(config.build()).getInstance();
 		
@@ -74,7 +74,7 @@ public class StreamTweets implements StatusListener{
 	}
 
 	public void onStatus(Status status) {
-		//log.info("onStatus -> " + status);
+		log.info("onStatus -> " + status);
 		TweetStatus tweetStatus = TweetTranslator.translateToTweetStatus(status);
 		
 		messageCreator.sendMessage(tweetStatus);

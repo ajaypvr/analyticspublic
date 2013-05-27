@@ -30,7 +30,7 @@ import com.vacationanalytics.tweets.TweetStatus;
  */
 public class MessageConsumerImpl implements MessageConsumer{
 	
-	private static final Logger LOG = LoggerFactory.getLogger(MessageProducer.class);
+	private static final Logger LOG = LoggerFactory.getLogger(MessageConsumerImpl.class);
 	private Context jndiContext = null;
 	private QueueConnectionFactory connectionFactory = null;
 	private QueueConnection connection = null;
@@ -58,7 +58,7 @@ public class MessageConsumerImpl implements MessageConsumer{
        	//javax.naming.Context ctx = new InitialContext(props);
            jndiContext = new InitialContext(props);
        } catch (NamingException e) {
-           System.out.println("Could not create JNDI API context: " + e.toString());
+    	   LOG.error("Could not create JNDI API context: " + e.toString());
            System.exit(1);
        }
 
@@ -70,7 +70,7 @@ public class MessageConsumerImpl implements MessageConsumer{
            
            queue = (Queue)jndiContext.lookup("TravelTweets");
        } catch (NamingException e) {
-           System.out.println("JNDI API lookup failed: " + e);
+    	   LOG.error("JNDI API lookup failed: " + e);
            e.printStackTrace();
            System.exit(1);
        }
@@ -100,13 +100,13 @@ public class MessageConsumerImpl implements MessageConsumer{
 					 
 		         }
 				}catch (JMSException e) {
-		           System.out.println("Exception occurred: " + e);
+					LOG.error("Exception occurred: " + e);
 		       } finally {
 		           if (connection != null) {
 		               try {
 		                   connection.close();
 		               } catch (JMSException e) {
-		               	System.out.println("Exception occurred: " + e);
+		            	   LOG.error("Exception occurred: " + e);
 		               }
 		           }
 		       }

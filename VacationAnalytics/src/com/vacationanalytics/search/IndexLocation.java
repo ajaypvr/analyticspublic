@@ -16,6 +16,12 @@ import org.springframework.core.io.ClassPathResource;
 import com.vacationanalytics.messaging.MessageConsumer;
 import com.vacationanalytics.search.dao.TweetSearchDAO;
 
+/**
+ * Creates the index that is used during searching.
+ * 
+ * @author ajaymangalam
+ *
+ */
 public class IndexLocation {
 	
 	private IndexLocation() {}

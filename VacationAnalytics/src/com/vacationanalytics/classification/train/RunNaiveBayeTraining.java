@@ -7,6 +7,11 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.vacationanalytics.classification.dao.TweetClassificationDAO;
 
+/**
+ * Class that is used to execute the training of the baye classifier
+ * @author ajaymangalam
+ *
+ */
 public class RunNaiveBayeTraining {
 	
 	

@@ -5,6 +5,11 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.vacationanalytics.stream.tweets.StreamTweets;
 
+/**
+ * This class starts the process that connects to the twitter feed and starts retrieving messages.
+ * @author ajaymangalam
+ *
+ */
 public class StartStreaming {
 	
 	public static void main(String[] args){

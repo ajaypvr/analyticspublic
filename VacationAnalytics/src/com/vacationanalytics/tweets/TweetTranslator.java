@@ -5,9 +5,19 @@ import java.sql.Timestamp;
 
 import twitter4j.Status;
 
+/**
+ * Translator for tweet objects
+ * 
+ * @author ajaymangalam
+ *
+ */
 public class TweetTranslator {
 	
-	
+	/**
+	 * Translates Status to TweetStatus
+	 * @param status
+	 * @return
+	 */
 	public static TweetStatus translateToTweetStatus(Status status){
 		
 		TweetStatus tweetStatus = new TweetStatus();

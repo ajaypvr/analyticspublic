@@ -5,6 +5,11 @@ import java.io.StringReader;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 
+/**
+ * The document that contains the tokens that are used for indexing
+ * @author ajaymangalam
+ *
+ */
 public class LocationDocument {
 		
 	public static Document Document(String location){

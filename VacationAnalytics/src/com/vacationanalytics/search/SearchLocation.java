@@ -17,6 +17,12 @@ import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
+/**
+ * Searches the tweet text if the location name exist..
+ * 
+ * @author ajaymangalam
+ *
+ */
 public class SearchLocation {
 	
 	String index = "index";

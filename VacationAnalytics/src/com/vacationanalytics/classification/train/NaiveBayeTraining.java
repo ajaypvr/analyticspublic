@@ -12,6 +12,11 @@ import java.util.logging.Logger;
 import com.vacationanalytics.classification.TweetCategory.TweetCategoryType;
 import com.vacationanalytics.classification.dao.TweetClassificationDAO;
 
+/**
+ * This class is used to Train the Baye Classifier by passing list of TweetTrainingInstance
+ * @author ajaymangalam
+ *
+ */
 public class NaiveBayeTraining {
 	
 	private static final Logger log = Logger.getLogger(NaiveBayeTraining.class.getName());
@@ -33,11 +38,13 @@ public class NaiveBayeTraining {
 	}
 	
 	/**
-	 * Takes a list of classified tweets and train the classifier
+	 * Takes a list of classified tweets and train the classifier.
+	 * 1. The number of instances for a give category
+	 * 2. The number of occurrences of attribute within a given category
 	 * @param tweetTrainingList
 	 */
 	public void train(List<TweetTrainingInstance> tweetTrainingList){
-		
+		log.info("Start train");
 		
 		for(TweetTrainingInstance tweetTrainingInstance: tweetTrainingList){
 			
@@ -77,7 +84,7 @@ public class NaiveBayeTraining {
 		
 		saveTrainingResult();
 		
-		
+		log.info("End train");
 	}
 	
 	public void saveTrainingResult(){

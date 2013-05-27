@@ -3,6 +3,12 @@ package com.vacationanalytics.tweets;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * Hold information of a given tweet
+ * 
+ * @author ajaymangalam
+ *
+ */
 public class TweetStatus implements Serializable{
 	
 	private long userId;

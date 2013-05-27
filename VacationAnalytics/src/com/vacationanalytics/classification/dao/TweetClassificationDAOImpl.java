@@ -17,6 +17,7 @@ import com.vacationanalytics.classification.TweetCategory.TweetCategoryType;
 import com.vacationanalytics.classification.train.TweetTrainingInstance;
 
 /**
+ * DAO to retrieve tweet information
  * 
  * @author ajaymangalam
  *
@@ -53,6 +54,9 @@ public class TweetClassificationDAOImpl implements TweetClassificationDAO{
 		return tweetCategoryCountMap;
 	}
 
+	/**
+	 * Get the count of attribute within each category
+	 */
 	public Map<TweetCategoryType, Map<String, Integer>> getTweetCategoryWordCount() {
 		Map<TweetCategoryType, Map<String, Integer>> tweetCategoryWordCountMap = new HashMap<TweetCategoryType, Map<String, Integer>>();
 		
@@ -79,6 +83,10 @@ public class TweetClassificationDAOImpl implements TweetClassificationDAO{
 		return tweetCategoryWordCountMap;
 	}
 
+	/**
+	 * Get the list of tweets that are used for training
+	 * @return
+	 */
 	public List<TweetTrainingInstance> getTweetTraining() {
 		List<TweetTrainingInstance> tweetInstanceList = new ArrayList<TweetTrainingInstance>();
 		
@@ -101,6 +109,10 @@ public class TweetClassificationDAOImpl implements TweetClassificationDAO{
 		return tweetInstanceList;
 	}
 
+	/**
+	 * Insert the list of tweets that are used for training
+	 * @param tweetInstanceList
+	 */
 	public void insertTweetTraining(List<TweetTrainingInstance> tweetInstanceList) {
 		final String query = "insert into " + schema + "." + TWEET_TRAINING + "(TWEET_ID, TWEET_TEXT, CATEGORY) VALUES (?, ?,?) ";
 			
@@ -126,7 +138,10 @@ public class TweetClassificationDAOImpl implements TweetClassificationDAO{
 		
 	}
 
-	
+	/**
+	 * Insert or update the number of instances that belongs to a particular category
+	 * @param tweetCategoryCountMap
+	 */
 	public void insertUpdateTweetCategoryCount(Map<TweetCategoryType, Integer> tweetCategoryCountMap) {
 		final String query = "insert into " + schema + "." + TWEET_CATEGORY_COUNT + " (CATEGORY, COUNT) VALUES (?,?) "
 							+ "ON DUPLICATE KEY UPDATE COUNT = ?";
@@ -149,6 +164,9 @@ public class TweetClassificationDAOImpl implements TweetClassificationDAO{
 		
 	}
 
+	/**
+	 * Insert the count of attribute within each category
+	 */
 	public void insertUpdateTweetCategoryWordCount(Map<TweetCategoryType, Map<String, Integer>> tweetCategoryWordCountMap) {
 		final String query = "insert into " + schema + "." + TWEET_CATEGORY_WORD_COUNT + " (WORD, CATEGORY, COUNT) VALUES (?,?, ?) "
 			+ "ON DUPLICATE KEY UPDATE COUNT = ?";

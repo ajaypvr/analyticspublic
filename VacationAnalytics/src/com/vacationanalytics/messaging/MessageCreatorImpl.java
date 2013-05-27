@@ -9,7 +9,6 @@ import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -56,7 +55,7 @@ public class MessageCreatorImpl implements MessageCreator{
         	//javax.naming.Context ctx = new InitialContext(props);
             jndiContext = new InitialContext(props);
         } catch (NamingException e) {
-            System.out.println("Could not create JNDI API context: " + e.toString());
+        	LOG.error("Could not create JNDI API context: " + e.toString());
             System.exit(1);
         }
 
@@ -67,7 +66,7 @@ public class MessageCreatorImpl implements MessageCreator{
             connectionFactory = (ConnectionFactory)jndiContext.lookup("ConnectionFactory");
             destination = (Destination)jndiContext.lookup(destinationName);
         } catch (NamingException e) {
-            System.out.println("JNDI API lookup failed: " + e);
+        	LOG.error("JNDI API lookup failed: " + e);
             e.printStackTrace();
             System.exit(1);
         }
@@ -96,13 +95,13 @@ public class MessageCreatorImpl implements MessageCreator{
 		     */
 		    //producer.send(session.createMessage());
 		} catch (JMSException e) {
-		    System.out.println("Exception occurred: " + e);
+			LOG.error("Exception occurred: " + e);
 		} finally {
 		    if (connection != null) {
 		        try {
 		            connection.close();
 		        } catch (JMSException e) {
-		        	System.out.println("Exception occurred: " + e);
+		        	LOG.error("Exception occurred: " + e);
 		        }
 		    }
 		}

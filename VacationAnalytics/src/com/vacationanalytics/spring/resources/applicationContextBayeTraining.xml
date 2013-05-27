@@ -10,7 +10,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
 	<property name="tweetClassificationDAO"><ref bean="tweetClassificationDAO"/></property>
 </bean>
 
-<bean id="naiveBayeClassifier" class="com.vacationanalytics.classification.classify.NaiveBayeClassifier">
+<bean id="naiveBayeClassifier" class="com.vacationanalytics.classification.classify.NaiveBayeClassifierImpl">
 	<property name="tweetClassificationDAO"><ref bean="tweetClassificationDAO"/></property>
 </bean>
 
@@ -30,9 +30,9 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
     
     <bean id="locationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://location.cde0ik8lxb3b.us-east-1.rds.amazonaws.com:3306/"/>
-        <property name="username" value="ajaymangalam"/>
-        <property name="password" value="ajaypvr"/>
+        <property name="url" value="${location.db.url}"/>
+        <property name="username" value="${location.db.username}"/>
+        <property name="password" value="${location.db.password}"/>
     </bean>
 
 </beans>

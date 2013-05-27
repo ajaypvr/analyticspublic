@@ -8,6 +8,11 @@ import java.util.Scanner;
 import com.vacationanalytics.classification.TweetCategory.TweetCategoryType;
 import com.vacationanalytics.classification.dao.TweetClassificationDAO;
 
+/**
+ * Class used to categorized the tweets that are used as training data for the baye classifier
+ * @author ajaymangalam
+ *
+ */
 public abstract class AbstractCreateTweetTrainingData {
 	
 	private TweetClassificationDAO tweetClassificationDAO;
@@ -15,7 +20,8 @@ public abstract class AbstractCreateTweetTrainingData {
 	
 	
 	/**
-	 * Read from a file and then take input from user to see if it is spam or not
+	 * Iterates through list of tweets and for each tweet take the input from user
+	 * for categorization of the tweet.
 	 */
 	public void train() throws IOException{
 		

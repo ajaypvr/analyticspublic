@@ -5,6 +5,11 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.vacationanalytics.messaging.MessageConsumer;
 
+/**
+ * This class starts the process that listens to the queue for new tweets
+ * @author ajaymangalam
+ *
+ */
 public class StartStreamConsumer {
 	
 	public static void main(String[] args){

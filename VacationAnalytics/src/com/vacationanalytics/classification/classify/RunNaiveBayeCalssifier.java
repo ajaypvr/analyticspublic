@@ -10,6 +10,11 @@ import com.vacationanalytics.classification.TweetCategory.TweetCategoryType;
 import com.vacationanalytics.search.dao.TweetSearchDAO;
 import com.vacationanalytics.tweets.TweetStatus;
 
+/**
+ * Class that is used to execute the classification of tweets using bayes classification algorithm
+ * @author ajaymangalam
+ *
+ */
 public class RunNaiveBayeCalssifier {
 	
 	private static final Logger log = Logger.getLogger(RunNaiveBayeCalssifier.class.getName());
@@ -31,10 +36,6 @@ public class RunNaiveBayeCalssifier {
 			log.info("TWEET TEXT = " + tweetStatus.getTweetText());
 			log.info("CATEGORY = " + classifiedCategory);
 		}
-		
-		
-		
-		
 	}
 
 }
